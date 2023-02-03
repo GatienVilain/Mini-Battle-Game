@@ -8,7 +8,7 @@ class Hero: public Personnage
 {
     public:
         Hero(int vie, int defense, int degats, std::string arme, std::string nom);
-        virtual void lancerPouvoir();
+        virtual void lancerPouvoir() = 0;
 
         // Getters & Setters
         int GetTourDeRecharge() const;
