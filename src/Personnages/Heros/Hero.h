@@ -11,9 +11,9 @@ class Hero: public Personnage
         virtual void lancerPouvoir() = 0;
 
         // Getters & Setters
-        int GetTourDeRecharge() const;
+        int getTourDeRecharge() const;
         void DecrementTourDeRecharge();
-        void SetTourDeRecharge(int toursDeRecharge);
+        void setTourDeRecharge(int toursDeRecharge);
 
     private:
         int toursDeRecharge;

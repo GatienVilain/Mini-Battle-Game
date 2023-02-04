@@ -8,19 +8,19 @@ Chevalier::Chevalier(std::string nom) : Hero(0, 0, 8, "", nom)
     srand(time(0));
 
     // Pour obtenir un nombre aléatoire entre 50 et 70
-    this->SetVie(50 + rand() % 21);
+    this->setVie(50 + rand() % 21);
 
     // Pour obtenir un nombre aléatoire entre 4 et 6
-    this->SetDefense(4 + rand() % 3);
+    this->setDefense(4 + rand() % 3);
 
     int choix = rand() % 2;
     if (choix == 0)
     {
-        this->SetArme("Hallebarde");
+        this->setArme("Hallebarde");
     }
     else
     {
-        this->SetArme("Epée longue");
+        this->setArme("Epée longue");
     }
 }
 
@@ -28,9 +28,9 @@ Chevalier::Chevalier(std::string nom) : Hero(0, 0, 8, "", nom)
 // Utilisable toutes les 3 tours
 void Chevalier::lancerPouvoir()
 {
-    if (this->GetTourDeRecharge() == 0)
+    if (this->getTourDeRecharge() == 0)
     {
-        this->SetDegats(this->GetDegats() + 5);
-        this->SetTourDeRecharge(3);
+        this->setDegats(this->getDegats() + 5);
+        this->setTourDeRecharge(3);
     }
 }

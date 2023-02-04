@@ -1,75 +1,74 @@
 #include "Personnage.h"
 
-
 Personnage::Personnage(int vie, int defense, int degats, std::string arme, std::string nom)
 {
-    this->SetVie(vie);
-    this->SetDefense(defense);
-    this->SetDegats(degats);
-    this->SetArme(arme);
-    this->SetNom(nom);
+    this->setVie(vie);
+    this->setDefense(defense);
+    this->setDegats(degats);
+    this->setArme(arme);
+    this->setNom(nom);
 }
 
-void Personnage::Attaquer(Personnage *p)
+void Personnage::attaquer(Personnage *p)
 {
-    if (p->GetDegats() < p->GetDefense())
+    if (p->getDegats() < p->getDefense())
     {
-        int vie = p->GetVie();
-        vie -= this->GetDegats() - p->GetDefense();
-        p->SetVie(vie);
+        int vie = p->getVie();
+        vie -= this->getDegats() - p->getDefense();
+        p->setVie(vie);
     }
 }
 
 // ======== Getters ========
 
-int Personnage::GetVie() const
+int Personnage::getVie() const
 {
     return this->vie;
 }
 
-int Personnage::GetDefense() const
+int Personnage::getDefense() const
 {
     return this->defense;
 }
 
-int Personnage::GetDegats() const
+int Personnage::getDegats() const
 {
     return this->degats;
 }
 
-std::string Personnage::GetArme() const
+std::string Personnage::getArme() const
 {
     return this->arme;
 }
 
-std::string Personnage::GetNom() const
+std::string Personnage::getNom() const
 {
     return this->nom;
 }
 
 // ======== Setters ========
 
-void Personnage::SetVie(int vie)
+void Personnage::setVie(int vie)
 {
     this->vie = vie;
 }
 
-void Personnage::SetDefense(int defense)
+void Personnage::setDefense(int defense)
 {
     this->defense = defense;
 }
 
-void Personnage::SetDegats(int degats)
+void Personnage::setDegats(int degats)
 {
     this->degats = degats;
 }
 
-void Personnage::SetArme(std::string arme)
+void Personnage::setArme(std::string arme)
 {
     this->arme = arme;
 }
 
-void Personnage::SetNom(std::string nom)
+void Personnage::setNom(std::string nom)
 {
     this->nom = nom;
 }

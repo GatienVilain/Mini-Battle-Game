@@ -8,19 +8,19 @@ Clerc::Clerc(std::string nom) : Hero(0, 0, 6, "", nom)
     srand(time(0));
 
     // Pour obtenir un nombre aléatoire entre 40 et 60
-    this->SetVie(40 + rand() % 21);
+    this->setVie(40 + rand() % 21);
 
     // Pour obtenir un nombre aléatoire entre 3 et 5
-    this->SetDefense(3 + rand() % 3);
+    this->setDefense(3 + rand() % 3);
 
     int choix = rand() % 2;
     if (choix == 0)
     {
-        this->SetArme("Hache");
+        this->setArme("Hache");
     }
     else
     {
-        this->SetArme("Masse");
+        this->setArme("Masse");
     }
 }
 
@@ -28,9 +28,9 @@ Clerc::Clerc(std::string nom) : Hero(0, 0, 6, "", nom)
 // Utilisable toutes les 3 tours
 void Clerc::lancerPouvoir()
 {
-    if (this->GetTourDeRecharge() == 0)
+    if (this->getTourDeRecharge() == 0)
     {
-        this->SetVie(this->GetVie() + 5);
-        this->SetTourDeRecharge(3);
+        this->setVie(this->getVie() + 5);
+        this->setTourDeRecharge(3);
     }
 }
