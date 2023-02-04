@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
 
-#include "Personnage.h"
-#include "Monstre.h"
-#include "Heros/Hero.h"
-#include "Heros/Chevalier.h"
-#include "Heros/Clerc.h"
-#include "Heros/Ninja.h"
+#include "personnage.h"
+#include "monstre.h"
+#include "heros/Hero.h"
+#include "heros/Chevalier.h"
+#include "heros/Clerc.h"
+#include "heros/Ninja.h"
 
 int main()
 {

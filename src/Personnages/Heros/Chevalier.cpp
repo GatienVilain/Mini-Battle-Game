@@ -1,4 +1,4 @@
-#include "Chevalier.h"
+#include "heros/chevalier.h"
 #include <cstdlib> // nécéssaire pour utiliser srand() et rand()
 #include <ctime> // nécéssaire pour utiliser time()
 
