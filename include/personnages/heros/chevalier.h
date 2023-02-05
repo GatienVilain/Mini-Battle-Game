@@ -1,7 +1,7 @@
 #ifndef CHEVALIER_H
 #define CHEVALIER_H
 
-#include "Hero.h"
+#include "hero.h"
 
 class Chevalier: public Hero
 {

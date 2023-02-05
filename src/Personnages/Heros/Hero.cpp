@@ -10,7 +10,7 @@ int Hero::getTourDeRecharge() const
     return this->toursDeRecharge;
 }
 
-void Hero::DecrementTourDeRecharge()
+void Hero::decrementTourDeRecharge()
 {
     if (this->getTourDeRecharge() > 0)
     {

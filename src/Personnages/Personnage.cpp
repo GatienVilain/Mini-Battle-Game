@@ -1,4 +1,4 @@
-#include "Personnage.h"
+#include "personnage.h"
 
 Personnage::Personnage(int vie, int defense, int degats, std::string arme, std::string nom)
 {

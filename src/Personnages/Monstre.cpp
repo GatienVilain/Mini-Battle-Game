@@ -1,4 +1,4 @@
-#include "Monstre.h"
+#include "monstre.h"
 #include <cstdlib> // nécéssaire pour utiliser srand() et rand()
 #include <ctime> // nécéssaire pour utiliser time()
 

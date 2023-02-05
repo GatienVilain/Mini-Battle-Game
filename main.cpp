@@ -10,7 +10,8 @@
 
 int main()
 {
-
+    Monstre test = Monstre();
+    std::cout << "Hello " << test.getNom() << std::endl;
 
     // ** Initialisation du jeu **
     // Création des 4 personnages

@@ -2,7 +2,7 @@
 #define MONSTRE_H
 
 #include <string>
-#include "Personnage.h"
+#include "personnage.h"
 
 class Monstre: public Personnage
 {

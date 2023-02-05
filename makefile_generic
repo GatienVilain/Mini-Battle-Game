@@ -9,7 +9,8 @@ TARGET_EXEC ?= mini_battle_game
 BUILD_DIR ?= ./build
 SRC_DIRS ?= 
 
-SRCS := ./main.cpp ./src/personnages/monstre.cpp ./src/personnages/personnage.cpp ./src/personnages/heros/chevalier.cpp ./src/personnages/heros/clerc.cpp ./src/personnages/heros/hero.cpp ./src/personnages/heros/ninja.cpp
+# ! Ce find ne semble pas fonctionner correctement. Il ne trouve que le fichier main.cpp
+SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
@@ -41,10 +42,6 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 
 clean:
 	$(RM) -r $(BUILD_DIR)
-
-
-clean-all:
-	$(RM) -r $(BUILD_DIR) $(TARGET_EXEC)
 
 -include $(DEPS)
 

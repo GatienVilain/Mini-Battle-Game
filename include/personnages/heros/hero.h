@@ -2,7 +2,7 @@
 #define HEROS_H
 
 #include <string>
-#include "Personnage.h"
+#include "personnage.h"
 
 class Hero: public Personnage
 {
@@ -12,7 +12,7 @@ class Hero: public Personnage
 
         // Getters & Setters
         int getTourDeRecharge() const;
-        void DecrementTourDeRecharge();
+        void decrementTourDeRecharge();
         void setTourDeRecharge(int toursDeRecharge);
 
     private:

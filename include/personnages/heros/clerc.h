@@ -1,7 +1,7 @@
 #ifndef CLERC_H
 #define CLERC_H
 
-#include "Hero.h"
+#include "hero.h"
 
 class Clerc: public Hero
 {

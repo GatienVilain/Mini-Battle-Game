@@ -1,7 +1,7 @@
 #ifndef NINJA_H
 #define NINJA_H
 
-#include "Hero.h"
+#include "hero.h"
 
 class Ninja: public Hero
 {
