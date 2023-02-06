@@ -4,11 +4,14 @@
 #include <string>
 #include "personnage.h"
 
-class Monstre: public Personnage
-{
-    public:
-        Monstre();
+namespace personnages {
 
-};
+    class Monstre: public Personnage
+    {
+        public:
+            Monstre();
+
+    };
+}
 
 #endif // MONSTRE_H

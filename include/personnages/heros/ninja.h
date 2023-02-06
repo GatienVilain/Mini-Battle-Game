@@ -3,11 +3,13 @@
 
 #include "hero.h"
 
-class Ninja: public Hero
-{
-    public:
-        Ninja(std::string nom);
-        void lancerPouvoir(Personnage *cible);
-};
+namespace personnages {
+    class Ninja: public Hero
+    {
+        public:
+            Ninja(std::string nom);
+            void lancerPouvoir(Personnage *cible);
+    };
+}
 
 #endif // NINJA_H

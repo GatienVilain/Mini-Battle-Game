@@ -1,5 +1,7 @@
 #include "personnage.h"
 
+using namespace personnages;
+
 Personnage::Personnage(int vie, int defense, int degats, std::string arme, std::string nom)
 {
     this->setVie(vie);

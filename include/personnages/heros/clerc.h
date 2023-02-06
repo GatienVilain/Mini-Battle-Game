@@ -3,11 +3,14 @@
 
 #include "hero.h"
 
-class Clerc: public Hero
-{
-    public:
-        Clerc(std::string nom);
-        void lancerPouvoir();
-};
+namespace personnages {
+
+    class Clerc: public Hero
+    {
+        public:
+            Clerc(std::string nom);
+            void lancerPouvoir();
+    };
+}
 
 #endif // CLERC_H

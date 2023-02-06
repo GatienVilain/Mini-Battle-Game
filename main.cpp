@@ -8,10 +8,14 @@
 #include "heros/Clerc.h"
 #include "heros/Ninja.h"
 
+using namespace personnages;
+
 int main()
 {
     Monstre test = Monstre();
     std::cout << "Hello " << test.getNom() << std::endl;
+    std::cout << "vie: " << test.getVie() << ", points de défense:" << test.getDefense() << std::endl;
+    std::cout << "arme: " << test.getArme() << " (" << test.getDegats() << " points de dégats)" << std::endl;
 
     // ** Initialisation du jeu **
     // Création des 4 personnages

@@ -2,6 +2,7 @@
 #include <cstdlib> // nécéssaire pour utiliser srand() et rand()
 #include <ctime> // nécéssaire pour utiliser time()
 
+using namespace personnages;
 
 Ninja::Ninja(std::string nom) : Hero(0, 0, 5, "saï (petits tridents à la main)", nom)
 {

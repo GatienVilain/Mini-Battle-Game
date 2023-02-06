@@ -2,6 +2,7 @@
 #include <cstdlib> // nécéssaire pour utiliser srand() et rand()
 #include <ctime> // nécéssaire pour utiliser time()
 
+using namespace personnages;
 
 Chevalier::Chevalier(std::string nom) : Hero(0, 0, 8, "", nom)
 {
