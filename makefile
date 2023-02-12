@@ -9,7 +9,11 @@ TARGET_EXEC ?= mini_battle_game
 BUILD_DIR ?= ./build
 SRC_DIRS ?=
 
-SRCS := ./main.cpp ./src/console/afficherScene.cpp ./src/personnages/monstres/monstre.cpp ./src/personnages/monstres/creerMonstres.cpp ./src/personnages/personnage.cpp ./src/personnages/heros/chevalier.cpp ./src/personnages/heros/clerc.cpp ./src/personnages/heros/hero.cpp ./src/personnages/heros/ninja.cpp ./src/personnages/heros/creerHeros.cpp
+# ? Ce find ne semble pas fonctionner correctement.
+# Il ne trouve que le fichier main.cpp mais fonctionne dans la console (manuellement)
+# SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
+# Solution de remplacement:
+SRCS := ./src/personnages/heros/chevalier.cpp ./src/personnages/heros/clerc.cpp ./src/personnages/heros/creerHeros.cpp ./src/personnages/heros/hero.cpp ./src/personnages/heros/ninja.cpp ./src/personnages/monstres/monstre.cpp ./src/personnages/monstres/creerMonstres.cpp ./src/personnages/personnage.cpp ./src/console/afficherScene.cpp ./src/console/affichageCreerHeros.cpp ./main.cpp
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 

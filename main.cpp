@@ -12,7 +12,7 @@ using namespace std;
 using namespace personnages;
 
 // Fonction principale d’une partie
-void nouvellePartie()
+void jouer()
 {
     // ** Initialisation du jeu **
     // Initialisation du générateur de valeurs aléatoires
@@ -20,7 +20,7 @@ void nouvellePartie()
 
     // Création des 4 personnages
     // Les noms des personnages sont saisies par l'utilisateur
-    vector<Hero*> heros = creerHeros(1); // TODO: mettre 4 heros
+    vector<Hero*> heros = creerHeros(2); // TODO: mettre 4 heros
 
     // Génération des 10 monstres aléatoires
     vector<Monstre*> monstres;
@@ -56,7 +56,7 @@ void nouvellePartie()
         // TODO: monstresCombattant = selectionMonstresCombattant(monstres, 1, 4);
 
         // TODO: affichage::afficherInfos(heros, monstresCombattant);
-        affichage::afficherCombatants(heros[-1], monstres[-1]); // TODO: REMOVE
+        affichage::afficherCombatants(heros.back(), monstres.back()); // TODO: REMOVE
 
         // Pour chaque héros, on demande au joueur ce qu’il veut faire
         for (auto hero : heros) //TODO: changer pour des int pour faire i-- si annulation du choix
@@ -127,10 +127,11 @@ int main()
 
         // Après chaque partie, on lui demande s’il veut relancer une nouvelle partie
         // TODO: bool nouvellePartie = demanderNouvellePartie();
+        bool nouvellePartie = true;
 
         if (nouvellePartie)
         {
-            nouvellePartie();
+            jouer();
         }
         else
         {

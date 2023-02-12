@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "creerHeros.h"
+#include "affichageCreerHeros.h"
 #include "hero.h"
 #include "chevalier.h"
 #include "clerc.h"
@@ -12,78 +13,71 @@ using namespace std;
 
 namespace personnages
 {
-
-    void afficherMenuClasse()
+    Hero* creerHero(string informations)
     {
-        cout << "Choisissez la classe du héro :" << endl;
-        cout << "1. Chevalier" << endl;
-        cout << "2. Clerc" << endl;
-        cout << "3. Ninja" << endl;
-    }
+        string nom = console::demanderNomHero(informations);
 
-    void afficherListeHeros(vector<Hero*> heros)
-    {
-        cout << "Liste des héros :" << endl;
-        for (auto hero : heros)
+        // Tant que la classe est incorrecte, on redemande la classe
+        informations = "";
+        while (true)
         {
-            cout << " - " << hero->getNom() << " (" << hero->getClasse() << ")" <<endl;
+            string choixClasse = console::demanderClasseHero(nom, informations);
+
+            switch (choixClasse[0])
+            {
+                case '1':
+                    return new Chevalier(nom);
+
+                case '2':
+                    return new Clerc(nom);
+
+                case '3':
+                    return new Ninja(nom);
+
+                default:
+                    informations = "Classe inconnue.";
+            }
         }
     }
 
-    Hero* creerHero()
-    {
-        string nom;
-        cout << "Entrez le nom du héro : ";
-        cin >> nom;
-
-        int choixClasse;
-        afficherMenuClasse();
-        // TODO: Exception si string entré
-        cin >> choixClasse;
-
-        Hero* personnage = nullptr;
-        switch (choixClasse)
-        {
-            case 1:
-                personnage = new Chevalier(nom);
-                break;
-            case 2:
-                personnage = new Clerc(nom);
-                break;
-            case 3:
-                personnage = new Ninja(nom);
-                break;
-            default:
-                cout << "Classe inconnue." << endl;
-                break;
-        }
-        return personnage;
-    }
-
-    vector<Hero*> creerHeros(int nombreHeros)
+    vector<Hero*> creerHeros(long unsigned int nombreHeros)
     {
         vector<Hero*> personnages;
+        int i = 1;
 
-        for (int i = 0; i < nombreHeros; i++)
+        while (personnages.size() < nombreHeros)
         {
-            cout << endl << "Hero n°" << i + 1 << endl;
-            Hero* personnage = creerHero();
-            personnages.push_back(personnage);
-
-            afficherListeHeros(personnages);
-
-            string annuler;
-            cout << "Voulez-vous annuler le choix précédent ? (oui/non) ";
-            cin >> annuler;
-            if (annuler == "oui")
+            if ( !personnages.empty() )
             {
-                cout << "Annulation du choix précédent.\nAu revoir " << personnage->getNom() << " (" << personnage->getClasse() << ")" <<endl;
-                personnages.pop_back();
-                i--;
+                affichage::afficherListeHeros(personnages);
+
+                if ( console::demanderAnnulation(personnages.back()) )
+                {
+                    personnages.pop_back();
+                    i--;
+                    continue;
+                }
+            }
+
+            affichage::afficherListeHeros(personnages);
+
+            Hero* personnage = creerHero("Hero n°" + to_string(i));
+            personnages.push_back(personnage);
+            i++;
+
+            // Pour pouvoir annuler une dernière fois les héros créés précédemment
+            if ( personnages.size() == nombreHeros )
+            {
+                affichage::afficherListeHeros(personnages);
+
+                if ( console::demanderAnnulation(personnages.back()) )
+                {
+                    personnages.pop_back();
+                    i--;
+                }
             }
         }
 
         return personnages;
     }
-
-} // end namespace personnages
+}
