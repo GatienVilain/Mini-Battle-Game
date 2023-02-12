@@ -4,7 +4,7 @@
 
 using namespace personnages;
 
-Clerc::Clerc(std::string nom) : Hero(0, 0, 6, "", nom)
+Clerc::Clerc(std::string nom) : Hero(0, 0, 6, "", nom, "Clerc")
 {
     srand(time(0));
 

@@ -7,9 +7,9 @@ CXX = g++
 TARGET_EXEC ?= mini_battle_game
 
 BUILD_DIR ?= ./build
-SRC_DIRS ?= 
+SRC_DIRS ?=
 
-SRCS := ./main.cpp ./src/personnages/monstre.cpp ./src/personnages/personnage.cpp ./src/personnages/heros/chevalier.cpp ./src/personnages/heros/clerc.cpp ./src/personnages/heros/hero.cpp ./src/personnages/heros/ninja.cpp
+SRCS := ./main.cpp ./src/console/afficherScene.cpp ./src/personnages/monstres/monstre.cpp ./src/personnages/monstres/creerMonstres.cpp ./src/personnages/personnage.cpp ./src/personnages/heros/chevalier.cpp ./src/personnages/heros/clerc.cpp ./src/personnages/heros/hero.cpp ./src/personnages/heros/ninja.cpp ./src/personnages/heros/creerHeros.cpp
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
@@ -39,9 +39,13 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 
 .PHONY: clean
 
+exec: $(TARGET_EXEC)
+	./$(TARGET_EXEC)
+
+reload: clean exec
+
 clean:
 	$(RM) -r $(BUILD_DIR)
-
 
 clean-all:
 	$(RM) -r $(BUILD_DIR) $(TARGET_EXEC)

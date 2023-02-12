@@ -4,7 +4,7 @@
 
 using namespace personnages;
 
-Ninja::Ninja(std::string nom) : Hero(0, 0, 5, "saï (petits tridents à la main)", nom)
+Ninja::Ninja(std::string nom) : Hero(0, 0, 5, "saï (petits tridents à la main)", nom, "Ninja")
 {
     srand(time(0));
 
@@ -17,11 +17,11 @@ Ninja::Ninja(std::string nom) : Hero(0, 0, 5, "saï (petits tridents à la main)
 
 // Pouvoir spécial du Ninja : Fait une deuxième attaque
 // Utilisable toutes les 3 tours
-void Ninja::lancerPouvoir(Personnage *cible)
+void Ninja::lancerPouvoir()
 {
     if (this->getTourDeRecharge() == 0)
     {
-        this->attaquer(cible);
+        // this->attaquer(cible);
         this->setTourDeRecharge(3);
     }
 }

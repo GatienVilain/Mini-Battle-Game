@@ -1,10 +1,21 @@
-#include "heros/hero.h"
+#include "hero.h"
 
 using namespace personnages;
 
-Hero::Hero(int vie, int defense, int degats, std::string arme, std::string nom): Personnage(vie, defense, degats, arme, nom)
+Hero::Hero(int vie, int defense, int degats, std::string arme, std::string nom, std::string classe): Personnage(vie, defense, degats, arme, nom)
 {
+    this->setClasse(classe);
     this->setTourDeRecharge(0);
+}
+
+std::string Hero::getClasse() const
+{
+    return this->classe;
+}
+
+void Hero::setClasse(std::string classe)
+{
+    this->classe = classe;
 }
 
 int Hero::getTourDeRecharge() const

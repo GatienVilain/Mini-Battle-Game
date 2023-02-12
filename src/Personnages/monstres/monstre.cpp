@@ -6,13 +6,15 @@ using namespace personnages;
 
 Monstre::Monstre() : Personnage(0, 0, 0, "", "")
 {
-    srand(time(0));
-
     int choix = rand() % 2;
     if (choix == 0)
+    {
         this->setNom("Orc");
+    }
     else
+    {
         this->setNom("Goblin");
+    }
 
     choix = rand() % 2;
     if (choix == 0)
