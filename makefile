@@ -1,10 +1,7 @@
 CC = g++
 CXX = g++
 
-# Windows
-# TARGET_EXEC ?= mini_battle_game.exe
-# Linux
-TARGET_EXEC ?= mini_battle_game
+TARGET_EXEC ?= mini_battle_game.exe
 
 BUILD_DIR ?= ./build
 SRC_DIRS ?=

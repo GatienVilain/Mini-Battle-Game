@@ -15,7 +15,7 @@ namespace personnages
     // Gère la création des héros
     // Demande le nombre de héros à créer en argument
     // Retourne l’ensemble des héros créés
-    std::vector<Hero*> creerHeros(long unsigned int nombreHeros);
+    std::vector<Hero*> creerHeros(unsigned int nombreHeros);
 }
 
 #endif // FONCTION_HEROS_H

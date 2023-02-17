@@ -4,6 +4,11 @@
 
 using namespace personnages;
 
+// Constructeur d’un monstre où on choisit ces informations.
+Monstre::Monstre(int vie, int defense, int degats, std::string arme, std::string nom) :
+    Personnage(vie, defense, degats, arme, nom){}
+
+// Constructeur d’un monstre aléatoire.
 Monstre::Monstre() : Personnage(0, 0, 0, "", "")
 {
     int choix = rand() % 2;
@@ -40,3 +45,4 @@ Monstre::Monstre() : Personnage(0, 0, 0, "", "")
         this->setDefense(2 + rand() % 3);
     }
 }
+

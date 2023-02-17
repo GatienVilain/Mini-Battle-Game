@@ -6,6 +6,7 @@
 #include "monstre.h"
 #include "hero.h"
 #include "creerHeros.h"
+#include "creerMonstres.h"
 #include "afficherScene.h"
 
 using namespace std;
@@ -23,14 +24,8 @@ void jouer()
     vector<Hero*> heros = creerHeros(2); // TODO: mettre 4 heros
 
     // Génération des 10 monstres aléatoires
-    vector<Monstre*> monstres;
-    // TODO: vector<Monstre*> monstres = creerMonstres(10);
-    // TODO: REMOVE
-    for (int i = 0; i < 10; i++)
-    {
-        Monstre* monstre = new Monstre();
-        monstres.push_back(monstre);
-    }
+    vector<Monstre*> monstres = creerMonstres(10);
+
 
     // TODO: REMOVE
     // for (auto test : monstres)
@@ -46,6 +41,8 @@ void jouer()
     //     std::cout << "vie: " << test->getVie() << ", points de défense:" << test->getDefense() << std::endl;
     //     std::cout << "arme: " << test->getArme() << " (" << test->getDegats() << " points de dégâts)" << std::endl;
     // }
+
+    return;
 
     // ** Boucle de combat **
     // Tant qu’il reste des héros et des monstres, on continue le combat

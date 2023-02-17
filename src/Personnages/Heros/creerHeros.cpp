@@ -40,7 +40,7 @@ namespace personnages
         }
     }
 
-    vector<Hero*> creerHeros(long unsigned int nombreHeros)
+    vector<Hero*> creerHeros(unsigned int nombreHeros)
     {
         vector<Hero*> personnages;
         int i = 1;
