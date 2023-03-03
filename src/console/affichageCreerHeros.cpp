@@ -59,9 +59,9 @@ namespace affichage
 {
     void afficherMenuClasse()
     {
-        cout << "Choisissez la classe du héro :\n"
-             << "1. Chevalier\n"
-             << "2. Clerc\n"
+        cout << "Choisissez la classe du héro :" << endl
+             << "1. Chevalier" << endl
+             << "2. Clerc" << endl
              << "3. Ninja" << endl;
     }
 

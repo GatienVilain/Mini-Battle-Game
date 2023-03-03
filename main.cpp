@@ -3,13 +3,14 @@
 #include <cstdlib> // nécéssaire pour utiliser rand() et srand()
 #include <ctime> // nécéssaire pour utiliser time()
 
+#include "main.h"
 #include "monstre.h"
 #include "hero.h"
 #include "creerHeros.h"
 #include "gererMonstres.h"
 #include "afficherScene.h"
+#include "demanderChoix.h"
 
-using namespace std;
 using namespace personnages;
 
 // Fonction principale d’une partie
@@ -21,11 +22,10 @@ void jouer()
 
     // Création des 4 personnages
     // Les noms des personnages sont saisies par l'utilisateur
-    vector<Hero*> heros = creerHeros(1); // TODO: mettre 4 heros
+    std::vector<Hero*> heros = creerHeros(2); // TODO: mettre 4 heros
 
     // Génération des 10 monstres aléatoires
-    vector<Monstre*> monstres = creerMonstres(10);
-
+    std::vector<Monstre*> monstres = creerMonstres(10);
 
     // TODO: REMOVE
     // for (auto test : monstres)
@@ -42,7 +42,6 @@ void jouer()
     //     std::cout << "arme: " << test->getArme() << " (" << test->getDegats() << " points de dégâts)" << std::endl;
     // }
 
-
     // ** Boucle de combat **
     // Tant qu’il reste des héros ou des monstres en vie, on continue de combattre
     // S’il y a encore des monstres à combattre, on en sélectionne un nombre aléatoire
@@ -50,85 +49,64 @@ void jouer()
     // Puis on recommence avec les monstres restants.
     while (!heros.empty() or !monstres.empty())
     {
-        // TODO: REMOVE
-        // for (auto test : monstres)
-        // {
-        //     std::cout << "Hello " << test->getNom() << std::endl;
-        //     std::cout << "vie: " << test->getVie() << ", points de défense:" << test->getDefense() << std::endl;
-        //     std::cout << "arme: " << test->getArme() << " (" << test->getDegats() << " points de dégâts)" << std::endl;
-        // }
-        // std::cout << "------------------------------------" << std::endl;
-
         // Fait combattre un nombre aléatoire de monstres (entre 1 et 4)
         // vector<Monstre*> monstresCombattant = monstres; // TODO: REMOVE
-        vector<Monstre*> monstresCombattant = selectionnerMonstresCombattant(monstres, 1, 4);
-
-        //  TODO: REMOVE`
-        // for (auto test : monstres)
-        // {
-        //     std::cout << "Hello " << test->getNom() << std::endl;
-        //     std::cout << "vie: " << test->getVie() << ", points de défense:" << test->getDefense() << std::endl;
-        //     std::cout << "arme: " << test->getArme() << " (" << test->getDegats() << " points de dégâts)" << std::endl;
-        // }
-        // std::cout << "------------------------------------" << std::endl;
-        // for (auto test : monstresCombattant)
-        // {
-        //     std::cout << "Hello " << test->getNom() << std::endl;
-        //     std::cout << "vie: " << test->getVie() << ", points de défense:" << test->getDefense() << std::endl;
-        //     std::cout << "arme: " << test->getArme() << " (" << test->getDegats() << " points de dégâts)" << std::endl;
-        // }
+        std::vector<Monstre*> monstresCombattant = selectionnerMonstresCombattant(monstres, 1, 4);
 
         // * Boucle d’un tour en combat *
         // Tant qu’il y a des monstres en train de combattre et que les héros sont vivants, on refait un tour.
         while (!heros.empty() or !monstresCombattant.empty())
         {
-            // TODO: affichage::afficherInfos(heros, monstresCombattant);
-            affichage::afficherCombatants(heros, monstresCombattant); // TODO: REMOVE and call it inside afficherInfos
+            // * Tour des héros *
 
-            return;
-
+            std::vector<outils::Choix> actions;
             // Pour chaque héros, on demande au joueur ce qu’il veut faire
-            for (auto hero : heros) //TODO: changer pour des int pour faire i-- si annulation du choix
+            for (long unsigned int i = 0; i < heros.size(); i++)
             {
-                // * Lors du tour d’un héros, le joueur choisit entre: *
+                // TODO: affichage::afficherInfos(heros, monstresCombattant);
+                affichage::afficherCombatants(heros, monstresCombattant); // TODO: REMOVE and call it inside afficherInfos
+
+                // Lors du tour d’un héros, le joueur choisit entre:
                 // - Attaquer un monstre = A/a
                 // - Se Défendre (+75% pour le tour actuel) = D/d
                 // - Utiliser le pouvoir spécial du héros = S/s
-                // TODO: char choix = recupereChoix(hero);
+                unsigned int choix = console::demanderChoix(heros[i]);
 
-                // switch (choix)
-                // {
-                //     case 'A'|'a':
-                //         struct Choix {
-                //             int choix = 1,
-                //             affichage::getMonstreCible(monstres)
-                //         };
-                //         choixTour.push_back(choix);
-                // }
+                // Si le joueur souhaite annuler son choix précédent,
+                // on revient au tour du héros précédent (s’il y en a un)
+                if (choix == 4)
+                {
+                    if (i > 0) { i = i - 2; }
+                    else { i--; }
+                    actions.pop_back();
+                    continue;
+                }
+
+                //// Exécute les choix du joueur pour ce tour et affiche le déroulement du combat (action, cible, dégâts, etc.)
+                //// Pour chaque message, on demande à l’utilisateur d’appuyer sur un bouton pour continuer, pour faciliter la lecture
+                //// -TODO: hero->executerAction();
+
+                // Selon le choix de l’utilisateur, Il est nécessaire de demander à l’utilisateur de choisir une cible
+                // On créé donc une action contenant le choix de l’utilisateur…
+                // …et la cible (qui est null si le choix ne nécessite pas de cible)
+                outils::Choix action {choix, nullptr};
+
+                // Si l’utilisateur souhaite attaquer un monstre
+                // Ou si l’utilisateur utilise le pouvoir du Ninja
+                if ( (choix == 1) || (choix == 3 && heros[i]->getClasse() == "Ninja") )
+                {
+                    // On demande à l’utilisateur de choisir un monstre à attaquer parmi ceux combattant
+                    // TODO: cible = console::demanderCible(monstresCombattant);
+                    std::cout << "TEST: Cible: " << monstresCombattant[0]->getNom() << std::endl;
+                    action.cible = monstresCombattant[0];
+                }
+
+                actions.push_back(action);
             }
 
-            for (auto hero : heros)
-            {
-                // Exécute les choix du joueur pour ce tour et affiche le déroulement du combat (action, cible, dégâts, etc.)
-                // Pour chaque message, on demande à l’utilisateur d’appuyer sur un bouton pour continuer, pour faciliter la lecture
-                // TODO: hero->executerAction();
-
-                // for (auto choix : choixTour)
-                // {
-                //     switch (choix.choix)
-                //     {
-                //         case 1:
-                //             hero->attaquer(choix.cible);
-                //             break;
-                //         case 2:
-                //             // TODO: hero->defendre();
-                //             break;
-                //         case 3:
-                //             hero->lancerPouvoir();
-                //             break;
-                //     }
-                // }
-            }
+            std::cout << "TEST: DONE SUCCESSFULLY" << std::endl;
+            std::cout << actions.size() << std::endl;
+            return; // TODO: REMOVE
 
             // Retire les monstres morts de la liste des monstres combattants et affiche les monstres restants
             // TODO: monstresCombattant = retirerMonstreMorts(monstresCombattant);
@@ -169,6 +147,6 @@ int main()
         }
     }
 
-    cout << "Merci d'avoir joué !" << endl;
+    std::cout << "Merci d'avoir joué !" << std::endl;
     return 0;
 }
