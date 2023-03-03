@@ -63,7 +63,7 @@ void jouer()
         // vector<Monstre*> monstresCombattant = monstres; // TODO: REMOVE
         vector<Monstre*> monstresCombattant = selectionnerMonstresCombattant(monstres, 1, 4);
 
-        // TODO: REMOVE
+        //  TODO: REMOVE`
         // for (auto test : monstres)
         // {
         //     std::cout << "Hello " << test->getNom() << std::endl;
@@ -83,7 +83,9 @@ void jouer()
         while (!heros.empty() or !monstresCombattant.empty())
         {
             // TODO: affichage::afficherInfos(heros, monstresCombattant);
-            affichage::afficherCombatants(heros.back(), monstresCombattant.back()); // TODO: REMOVE
+            affichage::afficherCombatants(heros, monstresCombattant); // TODO: REMOVE and call it inside afficherInfos
+
+            return;
 
             // Pour chaque héros, on demande au joueur ce qu’il veut faire
             for (auto hero : heros) //TODO: changer pour des int pour faire i-- si annulation du choix
