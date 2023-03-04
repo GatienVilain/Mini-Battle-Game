@@ -1,7 +1,10 @@
-#include "heros/ninja.h"
+#include <iostream>
 #include <cstdlib> // nécéssaire pour utiliser srand() et rand()
 #include <ctime> // nécéssaire pour utiliser time()
 
+#include "heros/ninja.h"
+
+using namespace std;
 using namespace personnages;
 
 Ninja::Ninja(std::string nom) : Hero(0, 0, 5, "saï (petits tridents à la main)", nom, "Ninja")
@@ -22,6 +25,7 @@ void Ninja::lancerPouvoir()
     if (this->getTourDeRecharge() == 0)
     {
         this->attaquer(this->cible);
+        cout << this->getNom() << " (Ninja) utilise son pouvoir spécial et attaque une deuxième fois !" << endl;
         this->attaquer(this->cible);
         this->setTourDeRecharge(3);
     }

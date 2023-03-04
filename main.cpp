@@ -3,7 +3,7 @@
 #include <cstdlib> // nécéssaire pour utiliser rand() et srand()
 #include <ctime> // nécéssaire pour utiliser time()
 
-#include "main.h"
+#include "outils.h"
 #include "monstre.h"
 #include "hero.h"
 #include "ninja.h"
@@ -101,8 +101,8 @@ void jouer()
                 else if(choix == 3 && heros[i]->getClasse() == "Ninja")
                 {
                     // On défini la cible du Ninja
-                    // Ninja* heroNinja = dynamic_cast<Ninja*>(heros[i]);
-                    // heroNinja->setCible( console::demanderCible(monstresCombattant, heros[i], heros) );
+                    Ninja* heroNinja = dynamic_cast<Ninja*>(heros[i]);
+                    heroNinja->setCible( console::demanderCible(monstresCombattant, heros[i], heros) );
                 }
 
                 actions.push_back(action);
@@ -137,21 +137,17 @@ void jouer()
 // Point d’entrée du programme
 int main()
 {
-    while (true)
+    bool nouvellePartie = true;
+    while (nouvellePartie)
     {
         // TODO: affichage::MenuPrincipal();
 
         // Après chaque partie, on lui demande s’il veut relancer une nouvelle partie
         // TODO: bool nouvellePartie = demanderNouvellePartie();
-        bool nouvellePartie = true;
 
         if (nouvellePartie)
         {
             jouer();
-        }
-        else
-        {
-            break;
         }
     }
 

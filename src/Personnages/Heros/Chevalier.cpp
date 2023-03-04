@@ -1,7 +1,10 @@
-#include "heros/chevalier.h"
+#include <iostream>
 #include <cstdlib> // nécéssaire pour utiliser srand() et rand()
 #include <ctime> // nécéssaire pour utiliser time()
 
+#include "heros/chevalier.h"
+
+using namespace std;
 using namespace personnages;
 
 Chevalier::Chevalier(std::string nom) : Hero(0, 0, 8, "", nom, "Chevalier")
@@ -33,5 +36,6 @@ void Chevalier::lancerPouvoir()
     {
         this->setDegats(this->getDegats() + 5);
         this->setTourDeRecharge(3);
+        cout << this->getNom() << " (Chevalier) utilise son pouvoir spécial : +5 de dégâts !" << endl;
     }
 }

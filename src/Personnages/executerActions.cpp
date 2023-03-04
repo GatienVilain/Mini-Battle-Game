@@ -1,49 +1,48 @@
-#include <iostream>
-#include <iomanip>
 #include <vector>
-#include <limits>
+#include <algorithm>
 
 #include "executerActions.h"
-#include "main.h"
+#include "outils.h"
 #include "hero.h"
 #include "monstre.h"
-#include "personnage.h"
 #include "afficherScene.h"
+#include "outilsAffichage.h"
 
 using namespace std;
-using namespace personnages;
+using namespace outils;
 
-namespace outils
+namespace personnages
 {
-    void executerActionsHeros(vector<Choix> actions, vector<Hero*> heros, vector<Monstre*> monstres)
+    void executerActionsHeros(vector<Choix> actions, vector<Hero*>& heros, vector<Monstre*>& monstres)
     {
         for (long unsigned int i = 0; i < heros.size(); i++)
         {
             affichage::afficherCombatants(heros, monstres);
 
             Choix action = actions[i];
+            bool isDead = false;
             switch (action.choix)
             {
                 // Le héros attaque
                 case 1:
-                    std::cout << heros[i]->getNom() << " attaque " << action.cible->getNom() << "." << std::endl;
-                    heros[i]->attaquer(action.cible);
+                    isDead = heros[i]->attaquer(action.cible);
+                    if (isDead)
+                    {
+                        // Supprime le monstre de la liste des monstres combattants
+                        monstres.erase(remove(monstres.begin(), monstres.end(), action.cible), monstres.end());
+                    }
                     break;
                 // Le héros se défend
                 case 2:
-                    std::cout << heros[i]->getNom() << " se défend." << std::endl;
                     heros[i]->seDefendre();
                     break;
                 // Le héros utilise son pouvoir
                 case 3:
-                    std::cout << heros[i]->getNom() << " utilise son pouvoir." << std::endl;
                     heros[i]->lancerPouvoir();
             }
 
             // Attend que l’utilisateur appuie sur Entrée pour passer à l’action suivante
-            std::cout << "Appuyez sur Entrée pour continuer." << std::endl;
-            std::cin.ignore();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            affichage::waitForUser();
         }
     }
 }

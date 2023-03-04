@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef OUTILS_H
+#define OUTILS_H
 
 #include "personnage.h"
 
@@ -13,5 +13,5 @@ namespace outils
 }
 
 
-#endif // MAIN_H
+#endif // OUTILS_H
 

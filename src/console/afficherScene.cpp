@@ -33,7 +33,15 @@ namespace affichage
                 infoHero1 = heros[i]->getNom() + " (" + heros[i]->getClasse() + ")";
                 infoHero2 = "[ " + to_string(heros[i]->getVie()) + " PV ] [ " + to_string(heros[i]->getDefense()) + " DEF ]";
                 infoHero3 = heros[i]->getArme() + " [ " + to_string(heros[i]->getDegats()) + " DMG ]";
-                infoHero4 = "Pouvoir disponible dans " + to_string(heros[i]->getTourDeRecharge()) + " tours";
+
+                int tourDeRecharge = heros[i]->getTourDeRecharge();
+                if (tourDeRecharge == 0)
+                {
+                    infoHero4 = "Pouvoir disponible";
+                }
+                else {
+                    infoHero4 = "Pouvoir disponible dans " + to_string(tourDeRecharge) + " tours";
+                }
             }
             else// Sinon, on initialise les variables à des valeurs vides
             {   // pour éviter que s’il n’y a pas de héro à l’index i,
@@ -65,10 +73,10 @@ namespace affichage
             }
 
             // Affiche les informations collectées pour les personnages à l’index i
-            cout << left << setw(70) << infoHero1 << right << setw(30) << infoMonstre1 << endl;
-            cout << left << setw(70) << infoHero2 << right << setw(30) << infoMonstre2 << endl;
-            cout << left << setw(70) << infoHero3 << right << setw(30) << infoMonstre3 << endl;
-            cout << left << setw(70) << infoHero4 << endl << endl;
+            cout << left << setw(50) << infoHero1 << right << setw(30) << infoMonstre1 << endl;
+            cout << left << setw(50) << infoHero2 << right << setw(30) << infoMonstre2 << endl;
+            cout << left << setw(50) << infoHero3 << right << setw(30) << infoMonstre3 << endl;
+            cout << left << setw(50) << infoHero4 << endl << endl;
         }
     }
 } // namespace affichage

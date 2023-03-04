@@ -1,7 +1,10 @@
-#include "heros/clerc.h"
+#include <iostream>
 #include <cstdlib> // nécéssaire pour utiliser srand() et rand()
 #include <ctime> // nécéssaire pour utiliser time()
 
+#include "heros/clerc.h"
+
+using namespace std;
 using namespace personnages;
 
 Clerc::Clerc(std::string nom) : Hero(0, 0, 6, "", nom, "Clerc")
@@ -33,5 +36,6 @@ void Clerc::lancerPouvoir()
     {
         this->setVie(this->getVie() + 5);
         this->setTourDeRecharge(3);
+        cout << this->getNom() << " (Clerc) utilise son pouvoir spécial et se soigne de 5 points de vie !" << endl;
     }
 }

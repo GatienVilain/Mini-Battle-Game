@@ -1,5 +1,8 @@
+#include <iostream>
+
 #include "personnage.h"
 
+using namespace std;
 using namespace personnages;
 
 Personnage::Personnage(int vie, int defense, int degats, std::string arme, std::string nom)
@@ -11,13 +14,36 @@ Personnage::Personnage(int vie, int defense, int degats, std::string arme, std::
     this->setNom(nom);
 }
 
-void Personnage::attaquer(Personnage *p)
+
+bool Personnage::attaquer(Personnage *p)
 {
-    if (p->getDegats() < p->getDefense())
+    // Réduit les points de vie de la cible p selon la formule suivante :
+    // p->vie -= this->attaque - p->defense
+    int degatsCauses = this->getDegats() - p->getDefense();
+    if ( degatsCauses > 0 )
     {
-        int vie = p->getVie();
-        vie -= this->getDegats() - p->getDefense();
-        p->setVie(vie);
+        // Si l’attaque ne cause pas la mort de la cible
+        if ( this->getVie() - degatsCauses > 0 )
+        {
+            p->setVie( p->getVie() - degatsCauses );
+            cout << this->getNom() << " attaque " << p->getNom()
+                << " et lui inflige " << degatsCauses << " points de dégâts." << endl;
+            return false;
+        }
+        else
+        {
+            p->setVie(0);
+            cout << this->getNom() << " attaque " << p->getNom()
+                << " et lui inflige " << degatsCauses << " points de dégâts." << endl;
+            cout << p->getNom() << " est mort." << endl;
+            return true;
+        }
+    }
+    else
+    {
+        cout << this->getNom() << " attaque " << p->getNom()
+             << " mais son attaque est bloquée." << endl;
+        return false;
     }
 }
 
@@ -25,6 +51,7 @@ void Personnage::seDefendre()
 {
     this->seDefend = true;
     this->setDefense(this->getDefense() + this->getDefense() * 0.75);
+    cout << this->getNom() << " se défend." << endl;
 }
 
 // ======== Getters ========
