@@ -10,7 +10,7 @@ using namespace personnages;
 
 namespace affichage
 {
-    void afficherCombatants(vector<Hero*> heros, vector<Monstre*> monstres)
+    void afficherCombatants(vector<Hero*> heros, vector<Monstre*> monstres, bool afficherNumeroCibles)
     {
         // Récupère le nombre maximum de personnages entre les héros et les monstres
         unsigned int nbHeros = heros.size();
@@ -47,8 +47,14 @@ namespace affichage
             // Pareil pour les monstres
             if (i < nbMonstres)
             {
+                if (afficherNumeroCibles)
+                {
+                    infoMonstre2 = to_string(i + 1) + ". ";
+                }
+                else { infoMonstre2 = "";}
+
                 infoMonstre1 = monstres[i]->getNom();
-                infoMonstre2 = "[ " + to_string(monstres[i]->getVie()) + " PV ] [ " + to_string(monstres[i]->getDefense()) + " DEF ]";
+                infoMonstre2 += "[ " + to_string(monstres[i]->getVie()) + " PV ] [ " + to_string(monstres[i]->getDefense()) + " DEF ]";
                 infoMonstre3 = monstres[i]->getArme() + " [ " + to_string(monstres[i]->getDegats()) + " DMG ]";
             }
             else

@@ -3,6 +3,9 @@
 
 #include "demanderChoix.h"
 #include "hero.h"
+#include "monstre.h"
+#include "personnage.h"
+#include "afficherScene.h"
 
 using namespace std;
 using namespace personnages;
@@ -11,12 +14,12 @@ namespace console
 {
     using namespace affichage;
 
-
     unsigned int demanderChoix(Hero* hero)
     {
+        string errText = "";
         while (true)
         {
-            afficherMenuChoix(hero->getNom(), hero->getTourDeRecharge() == 0);
+            afficherMenuChoix(hero->getNom(), hero->getTourDeRecharge() == 0, errText);
 
             string choix;
             cin >> choix;
@@ -40,7 +43,40 @@ namespace console
                 case 'R':
                     return 4;
                 default:
-                    cout << "Choix invalide. Entrer la lettre entre parenthèses correspondant à votre choix." << endl;
+                    errText = "Choix invalide. Entrer la lettre entre parenthèses correspondant à votre choix.";
+            }
+        }
+    }
+
+    Personnage* demanderCible(vector<Monstre*> ciblesPossibles, Hero* attaquant, vector<Hero*> heros)
+    {
+        string errText = "";
+        while (true)
+        {
+            afficherCiblesPossibles(ciblesPossibles, attaquant, heros, errText);
+
+            string choix;
+            cin >> choix;
+
+            try
+            {
+                // Convertir le choix en entier
+                long unsigned int choixInt = stoi(choix);
+                // Vérifier que le choix est valide
+                if (choixInt > 0 && choixInt <= ciblesPossibles.size())
+                {
+                    return ciblesPossibles[choixInt - 1];   // -1 car le premier élément est à l'index 0 …
+                                                            // …et que l’utilisateur répond un nombre qui commence à 1
+                }
+                else
+                {
+                    errText = "Choix invalide. Entrer le numéro correspondant à la cible.";
+                }
+            }
+            // Si le choix n'est pas un entier
+            catch (invalid_argument const& ex)
+            {
+                errText = "Entrée invalide. Entrer un nombre.";
             }
         }
     }
@@ -49,8 +85,9 @@ namespace console
 
 namespace affichage
 {
-    void afficherMenuChoix(string nomHero, bool pouvoirDisponible)
+    void afficherMenuChoix(string nomHero, bool pouvoirDisponible, string errText)
     {
+        cout << errText << endl;
         cout << "Que doit faire " << nomHero << " ? " << endl
              << " - Attaquer (A/a)" << endl
              << " - Se Défendre (D/d)" << endl;
@@ -61,6 +98,14 @@ namespace affichage
         }
 
         cout << "Annuler, revenir au personnage précédent (R/r)" << endl;
+    }
+
+    void afficherCiblesPossibles(vector<Monstre*> ciblesPossibles, Hero* attaquant, vector<Hero*> heros, string errText)
+    {
+        afficherCombatants(heros, ciblesPossibles, true);
+        cout << errText << endl;
+        cout << "Qui " << attaquant->getNom() << " doit attaquer ? " << endl;
+        cout << "(Entrer le numéro correspondant à la cible)" << endl;
     }
 }
 

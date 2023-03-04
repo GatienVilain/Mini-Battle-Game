@@ -7,7 +7,7 @@
 
 namespace affichage {
 
-    void afficherCombatants(std::vector<personnages::Hero*> heros, std::vector<personnages::Monstre*> monstres);
+    void afficherCombatants(std::vector<personnages::Hero*> heros, std::vector<personnages::Monstre*> monstres, bool afficherNumeroCibles = false);
 }
 
 #endif // AFFICHERSCENE_H

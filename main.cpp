@@ -96,9 +96,9 @@ void jouer()
                 if ( (choix == 1) || (choix == 3 && heros[i]->getClasse() == "Ninja") )
                 {
                     // On demande à l’utilisateur de choisir un monstre à attaquer parmi ceux combattant
-                    // TODO: cible = console::demanderCible(monstresCombattant);
-                    std::cout << "TEST: Cible: " << monstresCombattant[0]->getNom() << std::endl;
-                    action.cible = monstresCombattant[0];
+                    Personnage* cible = console::demanderCible(monstresCombattant, heros[i], heros);
+                    std::cout << "TEST: Cible: " << cible->getNom() << std::endl;
+                    action.cible = cible;
                 }
 
                 actions.push_back(action);
