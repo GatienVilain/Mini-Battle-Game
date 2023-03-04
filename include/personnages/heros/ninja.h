@@ -2,6 +2,7 @@
 #define NINJA_H
 
 #include "hero.h"
+#include "personnage.h"
 
 namespace personnages {
 
@@ -10,6 +11,13 @@ namespace personnages {
         public:
             Ninja(std::string nom);
             void lancerPouvoir();
+
+            // Getters & Setters
+            Personnage* getCible() const;
+            void setCible(Personnage* cible);
+
+        private:
+            Personnage* cible;
     };
 }
 

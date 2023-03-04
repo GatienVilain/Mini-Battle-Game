@@ -21,6 +21,12 @@ void Personnage::attaquer(Personnage *p)
     }
 }
 
+void Personnage::seDefendre()
+{
+    this->seDefend = true;
+    this->setDefense(this->getDefense() + this->getDefense() * 0.75);
+}
+
 // ======== Getters ========
 
 int Personnage::getVie() const

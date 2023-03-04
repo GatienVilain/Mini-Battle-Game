@@ -21,7 +21,20 @@ void Ninja::lancerPouvoir()
 {
     if (this->getTourDeRecharge() == 0)
     {
-        // this->attaquer(cible);
+        this->attaquer(this->cible);
+        this->attaquer(this->cible);
         this->setTourDeRecharge(3);
     }
+}
+
+// Getters & Setters
+
+Personnage* Ninja::getCible() const
+{
+    return this->cible;
+}
+
+void Ninja::setCible(Personnage* cible)
+{
+    this->cible = cible;
 }

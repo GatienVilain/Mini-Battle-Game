@@ -6,10 +6,12 @@
 #include "main.h"
 #include "monstre.h"
 #include "hero.h"
+#include "ninja.h"
 #include "creerHeros.h"
 #include "gererMonstres.h"
 #include "afficherScene.h"
 #include "demanderChoix.h"
+#include "executerActions.h"
 
 using namespace personnages;
 
@@ -82,33 +84,39 @@ void jouer()
                     continue;
                 }
 
-                //// Exécute les choix du joueur pour ce tour et affiche le déroulement du combat (action, cible, dégâts, etc.)
-                //// Pour chaque message, on demande à l’utilisateur d’appuyer sur un bouton pour continuer, pour faciliter la lecture
-                //// -TODO: hero->executerAction();
-
                 // Selon le choix de l’utilisateur, Il est nécessaire de demander à l’utilisateur de choisir une cible
                 // On créé donc une action contenant le choix de l’utilisateur…
                 // …et la cible (qui est null si le choix ne nécessite pas de cible)
                 outils::Choix action {choix, nullptr};
 
                 // Si l’utilisateur souhaite attaquer un monstre
-                // Ou si l’utilisateur utilise le pouvoir du Ninja
-                if ( (choix == 1) || (choix == 3 && heros[i]->getClasse() == "Ninja") )
+                if (choix == 1)
                 {
                     // On demande à l’utilisateur de choisir un monstre à attaquer parmi ceux combattant
                     Personnage* cible = console::demanderCible(monstresCombattant, heros[i], heros);
                     std::cout << "TEST: Cible: " << cible->getNom() << std::endl;
                     action.cible = cible;
                 }
+                // Ou si l’utilisateur utilise le pouvoir du Ninja
+                else if(choix == 3 && heros[i]->getClasse() == "Ninja")
+                {
+                    // On défini la cible du Ninja
+                    // Ninja* heroNinja = dynamic_cast<Ninja*>(heros[i]);
+                    // heroNinja->setCible( console::demanderCible(monstresCombattant, heros[i], heros) );
+                }
 
                 actions.push_back(action);
             }
+
+            // Exécute les choix du joueur pour ce tour et affiche le déroulement du combat (action, cible, dégâts, etc.)
+            // Pour chaque message, on demande à l’utilisateur d’appuyer sur un bouton pour continuer, pour faciliter la lecture
+            executerActionsHeros(actions, heros, monstresCombattant);
 
             std::cout << "TEST: DONE SUCCESSFULLY" << std::endl;
             std::cout << actions.size() << std::endl;
             return; // TODO: REMOVE
 
-            // Retire les monstres morts de la liste des monstres combattants et affiche les monstres restants
+            // Retire les monstres morts de la liste des monstres combattants
             // TODO: monstresCombattant = retirerMonstreMorts(monstresCombattant);
 
             // Choisis aléatoirement une cible pour chaque monstre combattant et les fait attaquer
