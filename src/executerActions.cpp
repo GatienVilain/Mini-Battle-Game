@@ -42,7 +42,8 @@ namespace outils
 
             // Attend que l’utilisateur appuie sur Entrée pour passer à l’action suivante
             std::cout << "Appuyez sur Entrée pour continuer." << std::endl;
-            // TODO: std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
 }
