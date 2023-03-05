@@ -37,8 +37,8 @@ namespace personnages {
             int defenseInitial_;
             int degats_;
             std::string arme_;
-            std::string nom;
-            bool seDefend;
+            std::string nom_;
+            bool seDefend_;
     };
 }
 
