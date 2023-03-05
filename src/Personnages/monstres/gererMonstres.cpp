@@ -10,7 +10,7 @@ namespace personnages
     {
         vector<Monstre*> monstres;
 
-        for (int i = 0; i < 10; i++)
+        for (unsigned int i = 0; i < nombreMonstres; i++)
         {
             Monstre* monstre = new Monstre();
             monstres.push_back(monstre);

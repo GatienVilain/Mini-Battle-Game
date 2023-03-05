@@ -6,6 +6,11 @@ using namespace std;
 
 namespace affichage
 {
+    void clearScreen()
+    {
+        cout << string(100, '\n');
+    }
+
     void waitForUser()
     {
         cout << right << setw(80) << "Appuyez sur Entrée pour continuer..." << endl;

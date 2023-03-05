@@ -4,6 +4,7 @@
 #include <ctime> // nécéssaire pour utiliser time()
 
 #include "outils.h"
+#include "menuPrincipal.h"
 #include "monstre.h"
 #include "hero.h"
 #include "ninja.h"
@@ -24,10 +25,10 @@ void jouer()
 
     // Création des 4 personnages
     // Les noms des personnages sont saisies par l'utilisateur
-    std::vector<Hero*> heros = creerHeros(2); // TODO: mettre 4 heros
+    std::vector<Hero*> heros = creerHeros(1); // TODO: mettre 4 heros
 
     // Génération des 10 monstres aléatoires
-    std::vector<Monstre*> monstres = creerMonstres(3); // TODO: mettre 10 monstres
+    std::vector<Monstre*> monstres = creerMonstres(1); // TODO: mettre 10 monstres
 
     // ** Boucle de combat **
     // Tant qu’il reste des héros ou des monstres en vie, on continue de combattre
@@ -49,8 +50,7 @@ void jouer()
             // Pour chaque héros, on demande au joueur ce qu’il veut faire
             for (long unsigned int i = 0; i < heros.size(); i++)
             {
-                // TODO: affichage::afficherInfos(heros, monstresCombattant);
-                affichage::afficherCombatants(heros, monstresCombattant); // TODO: REMOVE and call it inside afficherInfos
+                affichage::afficherCombatants(heros, monstresCombattant);
 
                 // Lors du tour d’un héros, le joueur choisit entre:
                 // - Attaquer un monstre = A/a
@@ -106,26 +106,26 @@ void jouer()
         }
     }
 
-    // TODO: affichage::afficherFinCombat(heros, monstres);
+    affichage::afficherFinCombat(heros, monstres);
 }
 
 // Point d’entrée du programme
 int main()
 {
-    bool nouvellePartie = true;
-    while (nouvellePartie)
-    {
-        // TODO: affichage::MenuPrincipal();
+    bool nouvellePartie;
+    do {
+        affichage::afficherMenuPrincipal();
 
         // Après chaque partie, on lui demande s’il veut relancer une nouvelle partie
-        // TODO: bool nouvellePartie = console::demanderNouvellePartie();
+        nouvellePartie = console::demanderNouvellePartie();
 
         if (nouvellePartie)
         {
             jouer();
         }
     }
+    while (nouvellePartie);
 
-    std::cout << "Merci d'avoir joué !" << std::endl;
+    std::cout << "Merci d'avoir joué ! On espère vous revoir bientôt !" << std::endl;
     return 0;
 }

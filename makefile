@@ -10,7 +10,7 @@ SRC_DIRS ?=
 # Il ne trouve que le fichier main.cpp mais fonctionne dans la console (manuellement)
 # SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 # Solution de remplacement:
-SRCS := ./src/personnages/heros/chevalier.cpp ./src/personnages/heros/clerc.cpp ./src/personnages/heros/creerHeros.cpp ./src/personnages/heros/hero.cpp ./src/personnages/heros/ninja.cpp ./src/personnages/monstres/monstre.cpp ./src/personnages/monstres/gererMonstres.cpp ./src/personnages/personnage.cpp ./src/console/afficherScene.cpp ./src/console/affichageCreerHeros.cpp ./src/console/demanderChoix.cpp ./src/console/outilsAffichage.cpp ./src/personnages/executerActions.cpp ./main.cpp
+SRCS := ./src/personnages/heros/chevalier.cpp ./src/personnages/heros/clerc.cpp ./src/personnages/heros/creerHeros.cpp ./src/personnages/heros/hero.cpp ./src/personnages/heros/ninja.cpp ./src/personnages/monstres/monstre.cpp ./src/personnages/monstres/gererMonstres.cpp ./src/personnages/personnage.cpp ./src/console/afficherScene.cpp ./src/console/affichageCreerHeros.cpp ./src/console/demanderChoix.cpp ./src/console/outilsAffichage.cpp ./src/personnages/executerActions.cpp ./src/console/menuPrincipal.cpp ./main.cpp
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 

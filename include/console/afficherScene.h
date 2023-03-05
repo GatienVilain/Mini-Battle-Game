@@ -8,6 +8,7 @@
 namespace affichage {
 
     void afficherCombatants(std::vector<personnages::Hero*> heros, std::vector<personnages::Monstre*> monstres, bool afficherNumeroCibles = false);
+    void afficherFinCombat(std::vector<personnages::Hero*>& heros, std::vector<personnages::Monstre*>& monstres);
 }
 
 #endif // AFFICHERSCENE_H

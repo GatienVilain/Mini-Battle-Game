@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 
+#include "outilsAffichage.h"
 #include "afficherScene.h"
 #include "hero.h"
 #include "monstre.h"
@@ -12,6 +13,7 @@ namespace affichage
 {
     void afficherCombatants(vector<Hero*> heros, vector<Monstre*> monstres, bool afficherNumeroCibles)
     {
+        clearScreen();
         // Récupère le nombre maximum de personnages entre les héros et les monstres
         unsigned int nbHeros = heros.size();
         unsigned int nbMonstres = monstres.size();
@@ -22,6 +24,7 @@ namespace affichage
         string infoHero1, infoHero2, infoHero3, infoHero4;
         string infoMonstre1, infoMonstre2, infoMonstre3, infoMonstre4;
 
+        cout << "  " << setfill('=') << setw(75) << "  " << endl << setfill(' ') << endl;
 
         // Affiche les informations de tous les personnages
         // Héros à gauche, monstres à droite
@@ -73,10 +76,49 @@ namespace affichage
             }
 
             // Affiche les informations collectées pour les personnages à l’index i
-            cout << left << setw(50) << infoHero1 << right << setw(30) << infoMonstre1 << endl;
-            cout << left << setw(50) << infoHero2 << right << setw(30) << infoMonstre2 << endl;
-            cout << left << setw(50) << infoHero3 << right << setw(30) << infoMonstre3 << endl;
-            cout << left << setw(50) << infoHero4 << endl << endl;
+            cout << left << setw(50) << "  " + infoHero1 << right << setw(30) << infoMonstre1 + "  " << endl;
+            cout << left << setw(50) << "  " + infoHero2 << right << setw(30) << infoMonstre2 + "  " << endl;
+            cout << left << setw(50) << "  " + infoHero3 << right << setw(30) << infoMonstre3 + "  " << endl;
+            cout << left << setw(50) << "  " + infoHero4 << endl << endl;
         }
+
+        cout << " " << setfill('=') << setw(75) << "  " << endl << setfill(' ');
+
     }
+
+    void afficherFinCombat(vector<Hero*>& heros, vector<Monstre*>& monstres)
+    {
+        clearScreen();
+
+        if (heros.size() == 0)
+        {
+            cout << "  ========================================================================" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << " |                             FIN DU COMBAT                               |" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << " |                     Vous avez malheureusement perdu.                    |" << endl;
+            cout << " |                     Tous vos héros sont morts.                          |" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << "  ========================================================================" << endl;
+        }
+        else
+        {
+            cout << "  ========================================================================" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << " |                             FIN DU COMBAT                               |" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << " |                     Vous avez gagné le combat !                         |" << endl;
+            cout << " |                     Tous les monstres sont morts.                       |" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << " |                                                                         |" << endl;
+            cout << "  ========================================================================" << endl;
+        }
+
+        waitForUser();
+    }
+
+
 } // namespace affichage
