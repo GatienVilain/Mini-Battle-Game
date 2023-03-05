@@ -11,6 +11,7 @@ namespace personnages {
         public:
             Hero(int vie, int defense, int degats, std::string arme, std::string nom, std::string classe);
             virtual void lancerPouvoir() = 0;
+            void finTour();
 
             // Getters & Setters
             std::string getClasse() const;

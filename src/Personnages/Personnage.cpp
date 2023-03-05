@@ -26,14 +26,14 @@ bool Personnage::attaquer(Personnage *p)
         if ( p->getVie() - degatsCauses > 0 )
         {
             p->setVie( p->getVie() - degatsCauses );
-            cout << this->getNom() << " attaque un " << p->getNom()
+            cout << this->getNom() << " attaque " << p->getNom()
                 << " et lui inflige " << degatsCauses << " points de dégâts." << endl;
             return false;
         }
         else
         {
             p->setVie(0);
-            cout << this->getNom() << " attaque un " << p->getNom()
+            cout << this->getNom() << " attaque " << p->getNom()
                 << " et lui inflige " << degatsCauses << " points de dégâts." << endl;
             cout << "Un " << p->getNom() << " est mort." << endl;
             return true;
@@ -41,7 +41,7 @@ bool Personnage::attaquer(Personnage *p)
     }
     else
     {
-        cout << this->getNom() << " attaque un " << p->getNom()
+        cout << this->getNom() << " attaque " << p->getNom()
              << " mais son attaque est bloquée." << endl;
         return false;
     }
@@ -52,6 +52,15 @@ void Personnage::seDefendre()
     this->seDefend = true;
     this->setDefense(this->getDefense() + this->getDefense() * 0.75);
     cout << this->getNom() << " se défend." << endl;
+}
+
+void Personnage::reinitialiserDefense()
+{
+    if (this->seDefend)
+    {
+        this->setDefense(this->getDefense() - this->getDefense() * 0.75);
+        this->seDefend = false;
+    }
 }
 
 // ======== Getters ========

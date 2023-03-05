@@ -45,4 +45,32 @@ namespace personnages
             affichage::waitForUser();
         }
     }
+
+    void executerActionsMonstres(vector<Monstre*>& monstres, vector<Hero*>& heros)
+    {
+        for (auto monstre : monstres)
+        {
+            affichage::afficherCombatants(heros, monstres);
+
+            // Le monstre attaque un héros au hasard
+            int indexCible = rand() % (heros.size() - 1);
+            bool isDead = monstre->attaquer(heros[indexCible]);
+            if (isDead)
+            {
+                // Si le héros est mort, on le supprime de la liste des héros
+                heros.erase(heros.begin() + indexCible);
+            }
+
+            // Attend que l’utilisateur appuie sur Entrée pour passer à l’action suivante
+            affichage::waitForUser();
+        }
+    }
+
+    void executerActionsFinTour(vector<Hero*>& heros, vector<Monstre*>& monstres)
+    {
+        for (auto hero : heros)
+        {
+            hero->finTour(); // Appelle la méthode dédiée pour chaque héros
+        }
+    }
 }

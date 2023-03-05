@@ -29,21 +29,6 @@ void jouer()
     // Génération des 10 monstres aléatoires
     std::vector<Monstre*> monstres = creerMonstres(10);
 
-    // TODO: REMOVE
-    // for (auto test : monstres)
-    // {
-    //     std::cout << "Hello " << test->getNom() << std::endl;
-    //     std::cout << "vie: " << test->getVie() << ", points de défense:" << test->getDefense() << std::endl;
-    //     std::cout << "arme: " << test->getArme() << " (" << test->getDegats() << " points de dégâts)" << std::endl;
-    // }
-    // std::cout << "------------------------------------" << std::endl;
-    // for (auto test : heros)
-    // {
-    //     std::cout << "Hello " << test->getNom() << " (" << test->getClasse() << ")" << endl;
-    //     std::cout << "vie: " << test->getVie() << ", points de défense:" << test->getDefense() << std::endl;
-    //     std::cout << "arme: " << test->getArme() << " (" << test->getDegats() << " points de dégâts)" << std::endl;
-    // }
-
     // ** Boucle de combat **
     // Tant qu’il reste des héros ou des monstres en vie, on continue de combattre
     // S’il y a encore des monstres à combattre, on en sélectionne un nombre aléatoire
@@ -52,7 +37,6 @@ void jouer()
     while (!heros.empty() or !monstres.empty())
     {
         // Fait combattre un nombre aléatoire de monstres (entre 1 et 4)
-        // vector<Monstre*> monstresCombattant = monstres; // TODO: REMOVE
         std::vector<Monstre*> monstresCombattant = selectionnerMonstresCombattant(monstres, 1, 4);
 
         // * Boucle d’un tour en combat *
@@ -112,24 +96,21 @@ void jouer()
             // Pour chaque message, on demande à l’utilisateur d’appuyer sur un bouton pour continuer, pour faciliter la lecture
             executerActionsHeros(actions, heros, monstresCombattant);
 
-            std::cout << "TEST: DONE SUCCESSFULLY" << std::endl;
-            std::cout << actions.size() << std::endl;
-            return; // TODO: REMOVE
-
-            // Retire les monstres morts de la liste des monstres combattants
-            // TODO: monstresCombattant = retirerMonstreMorts(monstresCombattant);
-
+            // * Tour des monstres *
             // Choisis aléatoirement une cible pour chaque monstre combattant et les fait attaquer
-            for (auto monstre : monstresCombattant)
-            {
-                int indexCible = rand() % (monstres.size() - 1);
-                monstre->attaquer(heros[indexCible]);
-            }
+            executerActionsMonstres(monstresCombattant, heros);
 
-            // À la fin de chaque tour, réinitialise les états temporaires des heros
-            // TODO: réinitialiserEtatsHeros(heros);
+            // * Fin du tour *
+            // À la fin de chaque tour, réinitialise les états temporaires des heros et met à jour les tours de recharge des pouvoirs spéciaux
+            executerActionsFinTour(heros, monstresCombattant);
         }
     }
+
+
+    std::cout << "TEST: DONE SUCCESSFULLY" << std::endl;
+    std::cout << heros.size() << std::endl;
+    std::cout << monstres.size() << std::endl;
+    return; // TODO: REMOVE
 
     // TODO: affichage::afficherFinCombat(heros, monstres);
 }
@@ -143,7 +124,7 @@ int main()
         // TODO: affichage::MenuPrincipal();
 
         // Après chaque partie, on lui demande s’il veut relancer une nouvelle partie
-        // TODO: bool nouvellePartie = demanderNouvellePartie();
+        // TODO: bool nouvellePartie = console::demanderNouvellePartie();
 
         if (nouvellePartie)
         {

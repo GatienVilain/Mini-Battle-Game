@@ -8,6 +8,12 @@ Hero::Hero(int vie, int defense, int degats, std::string arme, std::string nom, 
     this->setTourDeRecharge(0);
 }
 
+void Hero::finTour()
+{
+    this->decrementTourDeRecharge();
+    this->reinitialiserDefense();
+}
+
 std::string Hero::getClasse() const
 {
     return this->classe;

@@ -14,6 +14,8 @@ namespace personnages {
             bool attaquer(Personnage *p);
             // Augmente la défense de 75% pour le tour actuel
             void seDefendre();
+            // Réinitialise la défense à sa valeur initiale
+            void reinitialiserDefense();
 
             // Getters & Setters
             int getVie() const;

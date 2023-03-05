@@ -14,11 +14,11 @@ Monstre::Monstre() : Personnage(0, 0, 0, "", "")
     int choix = rand() % 2;
     if (choix == 0)
     {
-        this->setNom("Orc");
+        this->setNom("Un orc");
     }
     else
     {
-        this->setNom("Goblin");
+        this->setNom("Un goblin");
     }
 
     choix = rand() % 2;
