@@ -23,25 +23,25 @@ bool Personnage::attaquer(Personnage *p)
     if ( degatsCauses > 0 )
     {
         // Si l’attaque ne cause pas la mort de la cible
-        if ( this->getVie() - degatsCauses > 0 )
+        if ( p->getVie() - degatsCauses > 0 )
         {
             p->setVie( p->getVie() - degatsCauses );
-            cout << this->getNom() << " attaque " << p->getNom()
+            cout << this->getNom() << " attaque un " << p->getNom()
                 << " et lui inflige " << degatsCauses << " points de dégâts." << endl;
             return false;
         }
         else
         {
             p->setVie(0);
-            cout << this->getNom() << " attaque " << p->getNom()
+            cout << this->getNom() << " attaque un " << p->getNom()
                 << " et lui inflige " << degatsCauses << " points de dégâts." << endl;
-            cout << p->getNom() << " est mort." << endl;
+            cout << "Un " << p->getNom() << " est mort." << endl;
             return true;
         }
     }
     else
     {
-        cout << this->getNom() << " attaque " << p->getNom()
+        cout << this->getNom() << " attaque un " << p->getNom()
              << " mais son attaque est bloquée." << endl;
         return false;
     }
