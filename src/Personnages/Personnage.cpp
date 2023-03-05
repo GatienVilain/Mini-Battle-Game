@@ -12,6 +12,8 @@ Personnage::Personnage(int vie, int defense, int degats, std::string arme, std::
     this->setDegats(degats);
     this->setArme(arme);
     this->setNom(nom);
+    this->setSeDefend(false); // Le personnage ne se défend pas par défaut
+    this->setEtatSante(true); // Le personnage est vivant par défaut
 }
 
 
@@ -63,6 +65,16 @@ void Personnage::reinitialiserDefense()
     }
 }
 
+bool Personnage::estVivant()
+{
+    return this->etatSante_;
+}
+
+void Personnage::tuer()
+{
+    this->etatSante_ = false;
+}
+
 // ======== Getters ========
 
 int Personnage::getVie() const
@@ -93,6 +105,16 @@ std::string Personnage::getArme() const
 std::string Personnage::getNom() const
 {
     return this->nom_;
+}
+
+bool Personnage::getSeDefend() const
+{
+    return this->seDefend_;
+}
+
+bool Personnage::getEtatSante() const
+{
+    return this->etatSante_;
 }
 
 // ======== Setters ========
@@ -126,5 +148,15 @@ void Personnage::setArme(std::string arme)
 void Personnage::setNom(std::string nom)
 {
     this->nom_ = nom;
+}
+
+void Personnage::setSeDefend(bool seDefend)
+{
+    this->seDefend_ = seDefend;
+}
+
+void Personnage::setEtatSante(bool etatSante)
+{
+    this->etatSante_ = etatSante;
 }
 

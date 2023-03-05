@@ -16,6 +16,10 @@ namespace personnages {
             void seDefendre();
             // Réinitialise la défense à sa valeur initiale
             void reinitialiserDefense();
+            // Retourne l’état de santé du personnage (vivant: true ou mort: false)
+            bool estVivant();
+            // Défini le personnage comme mort
+            void tuer();
 
             // Getters & Setters
             int getVie() const;
@@ -24,12 +28,16 @@ namespace personnages {
             int getDegats() const;
             std::string getArme() const;
             std::string getNom() const;
+            bool getSeDefend() const;
+            bool getEtatSante() const;
             void setVie(int vie);
             void setDefense(int defense);
             void setDefenseInitial(int defenseInitial);
             void setDegats(int degats);
             void setArme(std::string arme);
             void setNom(std::string nom);
+            void setSeDefend(bool seDefend);
+            void setEtatSante(bool etatSante);
 
         private:
             int vie_;
@@ -39,6 +47,7 @@ namespace personnages {
             std::string arme_;
             std::string nom_;
             bool seDefend_;
+            bool etatSante_; // true: vivant, false: mort
     };
 }
 

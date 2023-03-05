@@ -25,12 +25,18 @@ namespace personnages
             {
                 // Le héros attaque
                 case 1:
-                    isDead = heros[i]->attaquer(action.cible);
-                    if (isDead)
+                    // Si le monstre est encore vivant
+                    if (action.cible->estVivant())
                     {
-                        // Supprime le monstre de la liste des monstres combattants
-                        monstres.erase(remove(monstres.begin(), monstres.end(), action.cible), monstres.end());
+                        isDead = heros[i]->attaquer(action.cible);
+                        if (isDead)
+                        {
+                            // Supprime le monstre de la liste des monstres combattants
+                            action.cible->tuer(); // Définit le monstre comme mort
+                            monstres.erase(remove(monstres.begin(), monstres.end(), action.cible), monstres.end());
+                        }
                     }
+                    else { continue; } // Si le monstre est mort, pas besoin d’afficher l’information à l’utilisateur
                     break;
                 // Le héros se défend
                 case 2:
@@ -58,7 +64,8 @@ namespace personnages
             if (isDead)
             {
                 // Si le héros est mort, on le supprime de la liste des héros
-                heros.erase(heros.begin() + indexCible);
+                heros[indexCible - 1]->tuer(); // Définit le héros comme mort
+                heros.erase(heros.begin() + (indexCible - 1));
             }
 
             // Attend que l’utilisateur appuie sur Entrée pour passer à l’action suivante
