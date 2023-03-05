@@ -27,21 +27,21 @@ void jouer()
     std::vector<Hero*> heros = creerHeros(2); // TODO: mettre 4 heros
 
     // Génération des 10 monstres aléatoires
-    std::vector<Monstre*> monstres = creerMonstres(10);
+    std::vector<Monstre*> monstres = creerMonstres(3); // TODO: mettre 10 monstres
 
     // ** Boucle de combat **
     // Tant qu’il reste des héros ou des monstres en vie, on continue de combattre
     // S’il y a encore des monstres à combattre, on en sélectionne un nombre aléatoire
     // Et on les fait combattre jusqu’à ce qu’ils soient morts ou que les héros soient tous morts.
     // Puis on recommence avec les monstres restants.
-    while (!heros.empty() or !monstres.empty())
+    while (!heros.empty() and !monstres.empty())
     {
         // Fait combattre un nombre aléatoire de monstres (entre 1 et 4)
         std::vector<Monstre*> monstresCombattant = selectionnerMonstresCombattant(monstres, 1, 4);
 
         // * Boucle d’un tour en combat *
         // Tant qu’il y a des monstres en train de combattre et que les héros sont vivants, on refait un tour.
-        while (!heros.empty() or !monstresCombattant.empty())
+        while (!heros.empty() and !monstresCombattant.empty())
         {
             // * Tour des héros *
 
@@ -105,12 +105,6 @@ void jouer()
             executerActionsFinTour(heros, monstresCombattant);
         }
     }
-
-
-    std::cout << "TEST: DONE SUCCESSFULLY" << std::endl;
-    std::cout << heros.size() << std::endl;
-    std::cout << monstres.size() << std::endl;
-    return; // TODO: REMOVE
 
     // TODO: affichage::afficherFinCombat(heros, monstres);
 }

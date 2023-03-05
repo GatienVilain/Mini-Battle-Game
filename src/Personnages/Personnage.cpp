@@ -35,7 +35,7 @@ bool Personnage::attaquer(Personnage *p)
             p->setVie(0);
             cout << this->getNom() << " attaque " << p->getNom()
                 << " et lui inflige " << degatsCauses << " points de dégâts." << endl;
-            cout << "Un " << p->getNom() << " est mort." << endl;
+            cout << p->getNom() << " est mort." << endl;
             return true;
         }
     }

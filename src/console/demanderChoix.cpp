@@ -19,7 +19,8 @@ namespace console
         string errText = "";
         while (true)
         {
-            afficherMenuChoix(hero->getNom(), hero->getTourDeRecharge() == 0, errText);
+            bool pouvoirDisponible = hero->getTourDeRecharge() == 0;
+            afficherMenuChoix(hero->getNom(), pouvoirDisponible, errText);
 
             string choix;
             cin >> choix;
@@ -34,14 +35,15 @@ namespace console
                 case 'd':
                 case 'D':
                     return 2;
-                case '3':
-                case 's':
-                case 'S':
-                    return 3;
                 case '4':
                 case 'r':
                 case 'R':
                     return 4;
+                case '3':
+                case 's':
+                case 'S':
+                    if (pouvoirDisponible){ return 3; } // Si le pouvoir est disponible, on retourne le choix
+                    // Sinon, C’est que le choix est invalide et donc on affiche un message d’erreur (voir default car pas de break)
                 default:
                     errText = "Choix invalide. Entrer la lettre entre parenthèses correspondant à votre choix.";
             }

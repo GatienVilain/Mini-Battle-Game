@@ -53,8 +53,8 @@ namespace personnages
             affichage::afficherCombatants(heros, monstres);
 
             // Le monstre attaque un héros au hasard
-            int indexCible = rand() % (heros.size() - 1);
-            bool isDead = monstre->attaquer(heros[indexCible]);
+            int indexCible = 1 + rand() % (heros.size());
+            bool isDead = monstre->attaquer(heros[indexCible - 1]);
             if (isDead)
             {
                 // Si le héros est mort, on le supprime de la liste des héros

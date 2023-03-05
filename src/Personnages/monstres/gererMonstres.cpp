@@ -24,6 +24,13 @@ namespace personnages
         // Pour obtenir un nombre aléatoire entre nombreMinimunDeMonstres et nombreMaximumDeMonstres
         unsigned int nombreMonstres = nombreMinimunDeMonstres + rand() % nombreMaximumDeMonstres;
 
+        // Si le nombre aléatoire de monstre est supérieur au nombre de monstres restants,
+        // on prend le nombre de monstres restants pour ne pas dépasser le nombre de monstres restants
+        if (nombreMonstres > monstres.size())
+        {
+            nombreMonstres = monstres.size();
+        }
+
         // Récupère le nombre désigné de monstres au début du vecteur de monstres donné
         vector<Monstre*> monstresCombattant(monstres.begin(), monstres.begin() + nombreMonstres);
 
