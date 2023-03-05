@@ -13,15 +13,15 @@ using namespace std;
 
 namespace personnages
 {
-    Hero* creerHero(string informations)
+    Hero* creerHero(vector<Hero*>& personnages, string informations)
     {
-        string nom = console::demanderNomHero(informations);
+        string nom = console::demanderNomHero(personnages, informations);
 
         // Tant que la classe est incorrecte, on redemande la classe
         informations = "";
         while (true)
         {
-            string choixClasse = console::demanderClasseHero(nom, informations);
+            string choixClasse = console::demanderClasseHero(personnages, nom, informations);
 
             switch (choixClasse[0])
             {
@@ -51,7 +51,7 @@ namespace personnages
             {
                 affichage::afficherListeHeros(personnages);
 
-                if ( console::demanderAnnulation(personnages.back()) )
+                if ( console::demanderAnnulation(personnages, personnages.back()) )
                 {
                     personnages.pop_back();
                     i--;
@@ -61,7 +61,7 @@ namespace personnages
 
             affichage::afficherListeHeros(personnages);
 
-            Hero* personnage = creerHero("Hero n°" + to_string(i));
+            Hero* personnage = creerHero(personnages, "Hero n°" + to_string(i));
             personnages.push_back(personnage);
             i++;
 
@@ -70,7 +70,7 @@ namespace personnages
             {
                 affichage::afficherListeHeros(personnages);
 
-                if ( console::demanderAnnulation(personnages.back()) )
+                if ( console::demanderAnnulation(personnages, personnages.back()) )
                 {
                     personnages.pop_back();
                     i--;

@@ -43,7 +43,8 @@ namespace console
                 case 's':
                 case 'S':
                     if (pouvoirDisponible){ return 3; } // Si le pouvoir est disponible, on retourne le choix
-                    // Sinon, C’est que le choix est invalide et donc on affiche un message d’erreur (voir default car pas de break)
+                    // Sinon, C’est que le choix est invalide et
+                    // donc on affiche un message d’erreur (voir default car pas de break)
                 default:
                     errText = "Choix invalide. Entrer la lettre entre parenthèses correspondant à votre choix.";
             }
@@ -89,25 +90,26 @@ namespace affichage
 {
     void afficherMenuChoix(string nomHero, bool pouvoirDisponible, string errText)
     {
-        cout << errText << endl;
-        cout << "Que doit faire " << nomHero << " ? " << endl
-             << " - Attaquer (A/a)" << endl
-             << " - Se Défendre (D/d)" << endl;
+        cout << "    " + errText << endl;
+        cout << "    Que doit faire " << nomHero << " ? " << endl
+             << "     - Attaquer (A/a)" << endl
+             << "     - Se Défendre (D/d)" << endl;
 
         if (pouvoirDisponible)
         {
-            cout << " - Utiliser son pouvoir spécial (S/s)" << endl;
+            cout << "     - Utiliser son pouvoir spécial (S/s)" << endl;
         }
 
-        cout << "Annuler, revenir au personnage précédent (R/r)" << endl;
+        cout << "    Annuler, revenir au personnage précédent (R/r)" << endl << "    ";
     }
 
-    void afficherCiblesPossibles(vector<Monstre*> ciblesPossibles, Hero* attaquant, vector<Hero*> heros, string errText)
+    void afficherCiblesPossibles( vector<Monstre*> ciblesPossibles, Hero* attaquant,
+                                  vector<Hero*> heros, string errText)
     {
         afficherCombatants(heros, ciblesPossibles, true);
-        cout << errText << endl;
-        cout << "Qui " << attaquant->getNom() << " doit attaquer ? " << endl;
-        cout << "(Entrer le numéro correspondant à la cible)" << endl;
+        cout << "    " + errText << endl;
+        cout << "    Qui " << attaquant->getNom() << " doit attaquer ? " << endl;
+        cout << "    (Entrer le numéro correspondant à la cible)" << endl << "    ";
     }
 }
 

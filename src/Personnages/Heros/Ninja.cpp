@@ -15,7 +15,7 @@ Ninja::Ninja(std::string nom) : Hero(0, 0, 5, "saï (petits tridents à la main)
     this->setVie(30 + rand() % 11);
 
     // Pour obtenir un nombre aléatoire entre 1 et 3
-    this->setDefense(1 + rand() % 3);
+    this->setDefenseInitial(1 + rand() % 3);
 }
 
 // Pouvoir spécial du Ninja : Fait une deuxième attaque
@@ -24,9 +24,10 @@ void Ninja::lancerPouvoir()
 {
     if (this->getTourDeRecharge() == 0)
     {
-        this->attaquer(this->cible);
-        cout << this->getNom() << " (Ninja) utilise son pouvoir spécial et attaque une deuxième fois !" << endl;
-        this->attaquer(this->cible);
+        this->attaquer(this->getCible());
+        cout << "   " << this->getNom()
+             << " (Ninja) utilise son pouvoir spécial et attaque une deuxième fois !" << endl;
+        this->attaquer(this->getCible());
         this->setTourDeRecharge(3);
     }
 }
@@ -35,10 +36,10 @@ void Ninja::lancerPouvoir()
 
 Personnage* Ninja::getCible() const
 {
-    return this->cible;
+    return this->cible_;
 }
 
 void Ninja::setCible(Personnage* cible)
 {
-    this->cible = cible;
+    this->cible_ = cible;
 }

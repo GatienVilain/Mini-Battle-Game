@@ -2,7 +2,8 @@
 
 using namespace personnages;
 
-Hero::Hero(int vie, int defense, int degats, std::string arme, std::string nom, std::string classe): Personnage(vie, defense, degats, arme, nom)
+Hero::Hero(int vie, int defense, int degats, std::string arme, std::string nom, std::string classe):
+    Personnage(vie, defense, degats, arme, nom)
 {
     this->setClasse(classe);
     this->setTourDeRecharge(0);
@@ -16,28 +17,28 @@ void Hero::finTour()
 
 std::string Hero::getClasse() const
 {
-    return this->classe;
+    return this->classe_;
 }
 
 void Hero::setClasse(std::string classe)
 {
-    this->classe = classe;
+    this->classe_ = classe;
 }
 
 int Hero::getTourDeRecharge() const
 {
-    return this->toursDeRecharge;
+    return this->toursDeRecharge_;
 }
 
 void Hero::decrementTourDeRecharge()
 {
     if (this->getTourDeRecharge() > 0)
     {
-        this->toursDeRecharge--;
+        this->toursDeRecharge_--;
     }
 }
 
 void Hero::setTourDeRecharge(int toursDeRecharge)
 {
-    this->toursDeRecharge = toursDeRecharge;
+    this->toursDeRecharge_ = toursDeRecharge;
 }

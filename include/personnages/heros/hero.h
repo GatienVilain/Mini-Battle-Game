@@ -21,8 +21,8 @@ namespace personnages {
             void setTourDeRecharge(int toursDeRecharge);
 
         private:
-            std::string classe;
-            int toursDeRecharge;
+            std::string classe_;
+            int toursDeRecharge_;
     };
 }
 

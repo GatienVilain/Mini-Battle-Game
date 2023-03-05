@@ -20,20 +20,23 @@ namespace personnages {
             // Getters & Setters
             int getVie() const;
             int getDefense() const;
+            int getDefenseInitial() const;
             int getDegats() const;
             std::string getArme() const;
             std::string getNom() const;
             void setVie(int vie);
             void setDefense(int defense);
+            void setDefenseInitial(int defenseInitial);
             void setDegats(int degats);
             void setArme(std::string arme);
             void setNom(std::string nom);
 
         private:
-            int vie;
-            int defense;
-            int degats;
-            std::string arme;
+            int vie_;
+            int defense_;
+            int defenseInitial_;
+            int degats_;
+            std::string arme_;
             std::string nom;
             bool seDefend;
     };

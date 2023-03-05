@@ -19,7 +19,11 @@ namespace personnages
         return monstres;
     }
 
-    vector<Monstre*> selectionnerMonstresCombattant(vector<Monstre*>& monstres, unsigned int nombreMinimunDeMonstres, unsigned int nombreMaximumDeMonstres)
+    vector<Monstre*> selectionnerMonstresCombattant(
+        vector<Monstre*>& monstres,
+        unsigned int nombreMinimunDeMonstres,
+        unsigned int nombreMaximumDeMonstres
+    )
     {
         // Pour obtenir un nombre aléatoire entre nombreMinimunDeMonstres et nombreMaximumDeMonstres
         unsigned int nombreMonstres = nombreMinimunDeMonstres + rand() % nombreMaximumDeMonstres;

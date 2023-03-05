@@ -17,7 +17,7 @@ namespace personnages {
             void setCible(Personnage* cible);
 
         private:
-            Personnage* cible;
+            Personnage* cible_;
     };
 }
 

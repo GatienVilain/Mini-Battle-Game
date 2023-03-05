@@ -25,10 +25,10 @@ void jouer()
 
     // Création des 4 personnages
     // Les noms des personnages sont saisies par l'utilisateur
-    std::vector<Hero*> heros = creerHeros(1); // TODO: mettre 4 heros
+    std::vector<Hero*> heros = creerHeros(4);
 
     // Génération des 10 monstres aléatoires
-    std::vector<Monstre*> monstres = creerMonstres(1); // TODO: mettre 10 monstres
+    std::vector<Monstre*> monstres = creerMonstres(10);
 
     // ** Boucle de combat **
     // Tant qu’il reste des héros ou des monstres en vie, on continue de combattre
@@ -68,7 +68,8 @@ void jouer()
                     continue;
                 }
 
-                // Selon le choix de l’utilisateur, Il est nécessaire de demander à l’utilisateur de choisir une cible
+                // Selon le choix de l’utilisateur,
+                // Il est nécessaire de demander à l’utilisateur de choisir une cible
                 // On créé donc une action contenant le choix de l’utilisateur…
                 // …et la cible (qui est null si le choix ne nécessite pas de cible)
                 outils::Choix action {choix, nullptr};
@@ -92,8 +93,10 @@ void jouer()
                 actions.push_back(action);
             }
 
-            // Exécute les choix du joueur pour ce tour et affiche le déroulement du combat (action, cible, dégâts, etc.)
-            // Pour chaque message, on demande à l’utilisateur d’appuyer sur un bouton pour continuer, pour faciliter la lecture
+            // Exécute les choix du joueur pour ce tour et affiche le déroulement du combat
+            // (action, cible, dégâts, etc.)
+            // Pour chaque message, on demande à l’utilisateur d’appuyer sur un bouton pour continuer,
+            // pour faciliter la lecture
             executerActionsHeros(actions, heros, monstresCombattant);
 
             // * Tour des monstres *
@@ -101,7 +104,8 @@ void jouer()
             executerActionsMonstres(monstresCombattant, heros);
 
             // * Fin du tour *
-            // À la fin de chaque tour, réinitialise les états temporaires des heros et met à jour les tours de recharge des pouvoirs spéciaux
+            // À la fin de chaque tour, réinitialise les états temporaires des heros
+            // et met à jour les tours de recharge des pouvoirs spéciaux
             executerActionsFinTour(heros, monstresCombattant);
         }
     }
@@ -126,6 +130,6 @@ int main()
     }
     while (nouvellePartie);
 
-    std::cout << "Merci d'avoir joué ! On espère vous revoir bientôt !" << std::endl;
+    std::cout << "    Merci d'avoir joué ! On espère vous revoir bientôt !" << std::endl;
     return 0;
 }

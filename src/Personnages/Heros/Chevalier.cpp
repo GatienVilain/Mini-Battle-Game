@@ -15,7 +15,7 @@ Chevalier::Chevalier(std::string nom) : Hero(0, 0, 58, "", nom, "Chevalier")
     this->setVie(50 + rand() % 21);
 
     // Pour obtenir un nombre aléatoire entre 4 et 6
-    this->setDefense(4 + rand() % 3);
+    this->setDefenseInitial(4 + rand() % 3);
 
     int choix = rand() % 2;
     if (choix == 0)
@@ -36,6 +36,7 @@ void Chevalier::lancerPouvoir()
     {
         this->setDegats(this->getDegats() + 5);
         this->setTourDeRecharge(3);
-        cout << this->getNom() << " (Chevalier) utilise son pouvoir spécial : +5 de dégâts !" << endl;
+        cout << "   " << this->getNom()
+             << " (Chevalier) utilise son pouvoir spécial : +5 de dégâts !" << endl;
     }
 }

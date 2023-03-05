@@ -14,11 +14,11 @@ Monstre::Monstre() : Personnage(0, 0, 0, "", "")
     int choix = rand() % 2;
     if (choix == 0)
     {
-        this->setNom("Un orc");
+        this->setNom("un orc");
     }
     else
     {
-        this->setNom("Un goblin");
+        this->setNom("un goblin");
     }
 
     choix = rand() % 2;
@@ -38,11 +38,11 @@ Monstre::Monstre() : Personnage(0, 0, 0, "", "")
 
     if (this->getNom() == "Orc")
     {   // Pour obtenir un nombre aléatoire entre 4 et 6
-        this->setDefense(4 + rand() % 3);
+        this->setDefenseInitial(4 + rand() % 3);
     }
     else
     {   // Pour obtenir un nombre aléatoire entre 2 et 4
-        this->setDefense(2 + rand() % 3);
+        this->setDefenseInitial(2 + rand() % 3);
     }
 }
 

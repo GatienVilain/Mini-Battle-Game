@@ -10,6 +10,13 @@ namespace personnages {
         public:
             Clerc(std::string nom);
             void lancerPouvoir();
+
+            // Getters & setters
+            int getVieMax() const;
+            void setVieMax(int vieMax);
+
+        private:
+            int vieMax_;
     };
 }
 

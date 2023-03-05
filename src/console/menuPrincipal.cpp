@@ -30,7 +30,7 @@ namespace console
         string choix;
         do
         {
-            cout << "    Entrée le numéro de votre choix:" << endl;
+            cout << "    Entrée le numéro de votre choix:" << endl << "    ";
             cin >> choix;
         }
         while (choix[0] != '1' and choix[0] != '2');
