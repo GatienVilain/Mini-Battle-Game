@@ -7,7 +7,7 @@
 using namespace std;
 using namespace personnages;
 
-Chevalier::Chevalier(std::string nom) : Hero(0, 0, 58, "", nom, "Chevalier")
+Chevalier::Chevalier(std::string nom) : Hero(0, 0, 8, "", nom, "Chevalier")
 {
     srand(time(0));
 
